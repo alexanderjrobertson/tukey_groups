@@ -1,0 +1,26 @@
+## This script can be used to determine statistical groups via Tukey's test.
+
+## Double check that your first column is numeric and your second is a character.
+
+## We will now turn the data into a linear regression, from which an ANOVA
+## and Tukey's test can be run.
+
+## your_data corresponds to the dataframe that you imported, your_observations corresponds
+## to the data that you are wishing to test and your_experimental_groups corresponds to the
+## experimental groups that you are wishing to test
+
+data.lm <- lm(your_data$your_observations ~ your_data$your_experimental_groups)
+
+## Install the agricolae package and load it
+
+install.packages("agricolae")
+
+library(agricolae)
+
+## Run the test. 
+
+results <- HSD.test(data.lm, "your_data$your_experimental_groups" )
+results
+
+## You should now have the groups sorted from highest to lowest based on mean.
+## The group letters are in the right most column
